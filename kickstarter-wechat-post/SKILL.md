@@ -22,7 +22,7 @@ disable-model-invocation: true
 
 ```
 - [ ] 1. 收集素材：拿到产品文案 + 图片/GIF 来源链接
-- [ ] 2. 下载图片到本地素材目录
+- [ ] 2. 在 Kickstarter 上级产品目录中新建产品文件夹，并下载/生成图片
 - [ ] 3. 写小红书 markdown（见 content-style.md 风格）
 - [ ] 4. 写公众号 HTML（见 content-style.md + wechat-pitfalls.md）
 - [ ] 5. 配置 .env（AppID/AppSecret/封面/作者）
@@ -33,9 +33,11 @@ disable-model-invocation: true
 ### 1-2. 素材与图片
 
 - 图片**必须是产品实物**。封面与正文配图都要和真机一致：优先从官方/媒体页下载原图，文生图只在拿不到实物时用且要尽量还原。
-- 创始团队/开发团队段落要配基本可信信息：公司/品牌、创始人或核心团队、背景来源、过往作品/众筹履历。优先放官方团队合照或创始人合影；没有团队图时，用官方故事页、采访或媒体报道里的创始人/早期产品图，并写清图源。
+- 若工作区是 `.../Kickstarter/Kickstarter Creation`，每个产品都必须在上级 `.../Kickstarter/<产品名>/` 新建独立素材文件夹，如 `../Poplight/`、`../lumos/`。所有下载或生成的封面、正文图、GIF、团队图都放进该产品文件夹，不放在 `Kickstarter Creation/output` 或临时目录。
+- 文件名要编号 + 语义化，便于正文引用和手机端核对：`01_<product>_title_cover.jpg` / `02_<product>_lifestyle.jpg` / `03_<product>_app_detail.jpg` / `04_<product>_founders.jpg` / `05_<product>_transition.gif`。
+- 公众号 HTML 中的 `<img src>` 优先引用这些本地图片（建议用绝对路径，或确保发布脚本能解析的相对路径）。发布脚本会把本地图片上传到微信 CDN 后替换。
+- 创始团队/开发团队段落要配基本可信信息：公司/品牌、创始人或核心团队、背景来源、过往作品/众筹履历。必须优先放官方团队合照或创始人合影，并在图注写清图源；没有团队图时，用官方故事页、采访或媒体报道里的创始人/早期产品图替代。
 - 大文件（GIF）用流式下载 + 长超时（120s），见 `wechat-pitfalls.md`。
-- 把图片下到一个固定本地目录（如用户指定的 `E:\公众号\...`），文件名语义化：`bird_standing_normal.jpg` / `bird_dropped_dead.jpg` / `lifestyle_*.jpg` / `transition_*.gif`。
 
 ### 3. 小红书 markdown
 
